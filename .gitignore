@@ -21,6 +21,6 @@ __pycache__/
 
 # Logs
 *.log
-db.sqlite3
-/media/
+
+
 /static_root/
