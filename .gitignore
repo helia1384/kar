@@ -1,0 +1,26 @@
+# Virtual environment
+.venv/
+venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Database
+*.sqlite3
+*.db
+
+# Environment variables
+.env
+
+# IDE configs
+.idea/
+.vscode/
+
+# Logs
+*.log
+db.sqlite3
+/media/
+/static_root/

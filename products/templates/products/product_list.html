@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>لیست محصولات</h2>
+    <a href="{% url 'product_create' %}" class="btn btn-success mb-3">➕ افزودن محصول جدید</a>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>ردیف</th>
+                <th>نام محصول</th>
+                <th>قیمت</th>
+                <th>تعداد موجود</th>
+                <th>تصویر</th>
+                <th>عملیات</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in object_list %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }} تومان</td>
+                <th>{{product.quantity}}</th>
+                <td>
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" width="100" alt="{{ product.name }}">
+                    {% else %}
+                        بدون تصویر
+                    {% endif %}
+                </td>
+
+                <td>
+                    <a href="{% url 'product_update' product.pk %}" class="btn btn-warning btn-sm">ویرایش</a>
+                    <a href="{% url 'product_delete' product.pk %}" class="btn btn-danger btn-sm">حذف</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="text-center">هیچ محصولی موجود نیست.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+
+
+</body>
+</html>

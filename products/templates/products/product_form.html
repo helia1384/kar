@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{% if object %}ویرایش محصول{% else %}افزودن محصول{% endif %}</h1>
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">ذخیره</button>
+</form>
+
+<a href="{% url 'product_list' %}">بازگشت به لیست محصولات</a>
+{% endblock %}
+
+
+</body>
+</html>

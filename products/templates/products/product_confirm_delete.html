@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends "base.html" %}
+
+{% block content %}
+<h1>آیا مطمئن هستید که می‌خواهید "{{ object.name }}" را حذف کنید؟</h1>
+
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">بله، حذف شود</button>
+  <a href="{% url 'product_list' %}">لغو</a>
+</form>
+{% endblock %}
+
+</body>
+</html>
