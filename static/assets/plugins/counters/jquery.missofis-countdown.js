@@ -25,7 +25,7 @@
 			to: 0, // stop at zero
 			movingUnit: 1000, // 1000 for 1 second increment/decrements
 			timerEnd: undefined,
-			outputPattern: '$day Days $hour : $minute : $second',
+			outputPattern: ' $hour : $minute : $second $day روز',
 			autostart: true
 
 		},

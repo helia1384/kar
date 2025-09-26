@@ -23,8 +23,8 @@ $( function() {
 	} );
 	// changed output patterns
 	$( '#timer-outputpattern' ).countdown( {
-		outputPattern: '$day Days $hour Hours $minute Minute $second Seconds',
+		outputPattern: ' $second ثانیه  $minute دقیقه $hour ساعت $day روز',
 		from: 60 * 60 * 24 * 3
-	} );
+	} );r
 	
 });

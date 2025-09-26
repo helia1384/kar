@@ -5,12 +5,12 @@
 	
 	
 	const ps2 = new PerfectScrollbar('.chat-scroll', {
-	  useBothWheelAxes:true,
-	  suppressScrollX:true,
+	  useBothWheelAxes:false,
+	  suppressScrollX:false,
 	});
 	const ps3 = new PerfectScrollbar('.Notification-scroll', {
-	  useBothWheelAxes:true,
-	  suppressScrollX:true,
+	  useBothWheelAxes:false,
+	  suppressScrollX:false,
 	});
 	
 	

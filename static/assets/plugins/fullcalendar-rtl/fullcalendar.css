@@ -47,8 +47,8 @@
     text-decoration: underline;
   }
 .fc-direction-ltr {
-  direction: ltr;
-  text-align: left;
+  direction: rtl;
+  text-align: right;
 }
 .fc-direction-rtl {
   direction: rtl;
@@ -142,7 +142,7 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
     overflow: visible;
     text-transform: none;
     margin: 0;
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: iransans;
     font-size: inherit;
     line-height: inherit;
   }
@@ -263,7 +263,7 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
     z-index: 1;
   }
 .fc-direction-ltr .fc-button-group > .fc-button:not(:first-child) {
-    margin-left: -1px;
+    margin-right: -1px;
     /* border-top-right-radius: 5px;
     border-bottom-right-radius: 5px; */
     border-top-left-radius: 0;
@@ -277,12 +277,11 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
   }
 .fc-direction-rtl .fc-button-group > .fc-button:not(:first-child) {
     margin-right: -1px;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
+border-radius: 0;
   }
 .fc-direction-rtl .fc-button-group > .fc-button:not(:last-child) {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
   }
 
 .fc .fc-toolbar {
@@ -301,11 +300,11 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
     margin: 0;
   }
 .fc-direction-ltr .fc-toolbar > * > :not(:first-child) {
-    margin-left: .75em; /* space between */
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    margin-right: .75em; /* space between */
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
   }
 .fc-direction-rtl .fc-toolbar > * > :not(:first-child) {
     margin-right: .75em; /* space between */
@@ -1478,7 +1477,7 @@ A VERTICAL event
     padding: 0 20px;
     border: 1px solid #eaedf1;
     background: #f7fafd;
-    text-align: left;
+    text-align: right;
   }
 
   #external-events h4 {

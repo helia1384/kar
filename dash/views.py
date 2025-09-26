@@ -10,3 +10,4 @@ from django.shortcuts import render
 @login_required
 def edit_profile(request):
     return render(request, 'accounts/edit_profile.html')
+

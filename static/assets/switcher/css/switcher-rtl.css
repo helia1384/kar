@@ -54,7 +54,7 @@
 .demo_changer {
 	z-index: 9999;
 	position: fixed;
-	right: -250px ;
+	left: -250px ;
 	font-weight: 400 !important;
 	height:100%;
 }
@@ -277,10 +277,9 @@ a.evo-hist {
 	color: #212121 !important;
     font-size: 14px;
     padding-bottom: 0;
-    text-align: left;
+    text-align: right;
     padding: 10px;
     font-weight: 600;
-	text-align: center;
 }
 .demo_changer i {
 	color: #fff;
@@ -295,7 +294,7 @@ a.evo-hist {
 	cursor: pointer;
     text-align: center;
     padding: 2px;
-    float: left;
+    float: right;
     height: 40px;
     line-height: 38px;
     width: 40px;
@@ -558,4 +557,18 @@ a.evo-hist {
 }
 .bootstrap-select-searchbox input {
 	margin-bottom: 0;
+}
+
+.dark-mode .demo_changer .form_holder{
+	box-shadow: 0px 8px 14px 1px rgba(148, 147, 162, 0.08);
+    border-right: 1px solid rgba(255,255,255, 0.07);
+}
+.ps__thumb-y{
+	right: 44px;
+}
+.horizontal-light-switcher{
+	display:none !important;
+}
+.ps > .ps__rail-y, .ps__rail-x{
+	opacity:0 !important;
 }

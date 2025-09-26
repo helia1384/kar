@@ -32,7 +32,7 @@
 #mixedSlider .MS-content .item .imgTitle .blogTitle {
   margin: 0;
   text-align: left;
-  letter-spacing: 2px;
+  letter-spacing:1px;
   color: #252525;
   font-style: italic;
   position: absolute;

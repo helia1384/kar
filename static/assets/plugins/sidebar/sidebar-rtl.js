@@ -100,7 +100,7 @@
     return this
   }
 
-  $(document).on('click.bs.sidebar.data-api', '[data-bs-toggle="sidebar-right"]', function (e) {
+  $(document).on('click.bs.sidebar.data-api', '[data-bs-toggle="sidebar-left"]', function (e) {
     var $this = $(this), href
     var target = $this.attr('data-bs-target')
         || e.preventDefault()
@@ -114,7 +114,7 @@
 
   $('html').on('click.bs.sidebar.autohide', function(event){
     var $this = $(event.target);
-    var isButtonOrSidebar = $this.is('.sidebar, [data-bs-toggle="sidebar-right"]') || $this.parents('.sidebar, [data-bs-toggle="sidebar-right"]').length;
+    var isButtonOrSidebar = $this.is('.sidebar, [data-bs-toggle="sidebar-left"]') || $this.parents('.sidebar, [data-bs-toggle="sidebar-left"]').length;
     if (isButtonOrSidebar) {
       return;
     } else {
@@ -135,8 +135,8 @@
 	
 	
 	// ______________ PerfectScrollbar	
-	const ps1 = new PerfectScrollbar('.sidebar-right', {
-		useBothWheelAxes:true,
-		suppressScrollX:true,
+	const ps1 = new PerfectScrollbar('.sidebar-left', {
+		useBothWheelAxes:false,
+		suppressScrollX:false,
 	});
 }(jQuery);

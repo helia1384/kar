@@ -106,7 +106,7 @@
 .SumoSelect>.CaptionCont>label {
 	position: absolute;
 	top: 0;
-	right: 0;
+	left: 0;
 	bottom: 0;
 	width: 30px;
 }
@@ -256,7 +256,7 @@
 /*styling for multiple select*/
 
 .SumoSelect>.optWrapper.multiple>.options li.opt {
-	padding-left: 35px;
+	padding-right: 35px;
 	cursor: pointer;
 }
 .SumoSelect>.optWrapper.multiple>.options li.opt span, .SumoSelect .select-all>span {
@@ -265,7 +265,7 @@
 	width: 30px;
 	top: 0;
 	bottom: 0;
-	margin-left: -35px;
+	margin-right: -35px;
 }
 .SumoSelect>.optWrapper.multiple>.options li.opt span i, .SumoSelect .select-all>span i {
 	position: absolute;

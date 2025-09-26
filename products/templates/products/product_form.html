@@ -6,17 +6,38 @@
 </head>
 <body>
 {% extends "base.html" %}
+{% load widget_tweaks %}
 
 {% block content %}
-<h1>{% if object %}ویرایش محصول{% else %}افزودن محصول{% endif %}</h1>
+<div class="container mt-5">
+    <div class="card shadow rounded-3">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">
+                {% if object %} ویرایش محصول {% else %} افزودن محصول {% endif %}
+            </h4>
+        </div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
 
-<form method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">ذخیره</button>
-</form>
+                {% for field in form %}
+                    <div class="mb-3">
+                        <label class="form-label">{{ field.label }}</label>
+                        {{ field|add_class:"form-control"|attr:"placeholder:وارد کنید" }}
+                        {% if field.errors %}
+                            <div class="text-danger small">
+                                {{ field.errors }}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
 
-<a href="{% url 'product_list' %}">بازگشت به لیست محصولات</a>
+                <button type="submit" class="btn btn-success">💾 ذخیره</button>
+                <a href="{% url 'product_list' %}" class="btn btn-secondary">بازگشت به لیست محصولات</a>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 

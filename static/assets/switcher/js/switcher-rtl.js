@@ -60,20 +60,18 @@ function eraseCookie(name){
 // DEMO Swticher Base
 jQuery('.demo_changer .demo-icon').click(function(){
 	if(jQuery('.demo_changer').hasClass("active")){
-		jQuery('.demo_changer').animate({"right":"-255px"},function(){
+		jQuery('.demo_changer').animate({"left":"-253px"},function(){
 			jQuery('.demo_changer').toggleClass("active");
 		});						
 	}else{
-		jQuery('.demo_changer').animate({"right":"0px"},function(){
+		jQuery('.demo_changer').animate({"left":"0px"},function(){
 			jQuery('.demo_changer').toggleClass("active");
 		});			
 	} 
-	
-	const ps3 = new PerfectScrollbar('.sidebar-right1', {
-		useBothWheelAxes:true,
-		suppressScrollX:true,
+	const ps7 = new PerfectScrollbar('.sidebar-right1', {
+	  useBothWheelAxes:false,
+	  suppressScrollX:false,
 	});
-	
-	
-	
 });
+
+

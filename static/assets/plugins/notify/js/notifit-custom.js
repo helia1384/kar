@@ -1,27 +1,27 @@
 function not1() {
 	notif({
-		msg: "Default <b>Top</b> Notification",
+		msg: "پیشفرض <b>بالا</b> اعلان",
 		position: "top",
 	});
 }
 
 function not2() {
 	notif({
-		msg: "Default <b>Center</b> Notification",
+		msg: "پیشفرض <b>مرکز</b> اعلان",
 		position: "center"
 	});
 }
 
 function not3() {
 	notif({
-		msg: "Default <b>Left</b> Notification",
+		msg: "پیشفرض <b>چپ</b> اعلان",
 		position: "left"
 	});
 }
 
 function not4() {
 	notif({
-		msg: "Default <b>Center Full width</b> Notification",
+		msg: "پیشفرض <b>پهنا کامل</b> اعلان",
 		width: "all",
 		position: "center"
 	});
@@ -29,14 +29,14 @@ function not4() {
 
 function not5() {
 	notif({
-		msg: "Default <b>Right</b> Notification",
+		msg: "پیشفرض <b>راست</b> اعلان",
 		position: "right",
 		bottom:'10'
 	});
 }
 function not51() {
 	notif({
-		msg: "Default <b>Bottom</b> Notification",
+		msg: "پیشفرض <b>پایین</b> اعلان",
 		position: "bottom",
 		bottom:'10'
 	});
@@ -44,21 +44,21 @@ function not51() {
 function not6() {
 	notif({
 		type: "primary",
-		msg: "Welcome to VALEX",
+		msg: "خوش آمدید",
 		position: "right",
 		bottom:'10'
 	});
 }
 function not7() {
 	notif({
-		msg: "<b>Success:</b> Well done Details Submitted Successfully",
+		msg: "<b>موفقیت:</b> جزئیات خوب انجام شد ارسال موفقیت آمیز",
 		type: "success"
 	});
 }
 
 function not8() {
 	notif({
-		msg: "<b>Oops!</b> An Error Occurred",
+		msg: "<b>اوپس!</b> خطایی رخ داده است",
 		type: "error",
 		position: "center"
 	});
@@ -67,7 +67,7 @@ function not8() {
 function not9() {
 	notif({
 		type: "warning",
-		msg: "<b>Warning:</b> Something Went Wrong",
+		msg: "<b>اخطار:</b> مشکلی پیش آمد",
 		position: "left"
 	});
 }
@@ -75,7 +75,7 @@ function not9() {
 function not10() {
 	notif({
 		type: "info",
-		msg: "<b>Info: </b>Some info here.",
+		msg: "<b>اطلاعات: </b>برخی از اطلاعات در اینجا",
 		width: "all",
 		position: "center"
 	});
@@ -84,7 +84,7 @@ function not10() {
 function not11() {
 	notif({
 		type: "error",
-		msg: "<b>Error: </b>This error will stay here until you click it.",
+		msg: "<b>خطا: </b>این خطا تا زمانی که روی آن کلیک نکنید در اینجا باقی خواهد ماند.",
 		position: "center",
 		autohide: false
 	});
@@ -93,7 +93,7 @@ function not11() {
 function not12() {
 	notif({
 		type: "dark",
-		msg: "Opacity is cool!",
+		msg: "تیرگی سرد است!",
 		position: "center",
 		opacity: 0.5
 	});
@@ -101,7 +101,7 @@ function not12() {
 function not13() {
 	notif({
 		type: "info",
-		msg: "Testing a multiline text. Testing, one, two.. More.",
+		msg: "در حال آزمایش متن چند خطی. تست کردن ، یک ، دو ... بیشتر.",
 		position: "center",
 		width: 150,
 		autohide: false,
@@ -111,7 +111,7 @@ function not13() {
 function not14() {
 	notif({
 		type: "success",
-		msg: "Fade mode activated.",
+		msg: "حالت محو شدن فعال شد.",
 		position: "right",
 		fade: true
 	});
@@ -119,7 +119,7 @@ function not14() {
 
 function not15() {
 	notif({
-		msg: "Customize with your favourite color!",
+		msg: "با رنگ دلخواه خود سفارشی کنید!",
 		position: "left",
 		bgcolor: "#8500ff",
 		color: "#fff"
@@ -128,7 +128,7 @@ function not15() {
 
 function not16() {
 	notif({
-		msg: "Customize the timeout!",
+		msg: "مهلت زمانی را سفارشی کنید!",
 		position: "left",
 		time: 1000
 	});
@@ -138,7 +138,7 @@ function not17() {
 		if(choice){
 			notif({
 				'type': 'success',
-				'msg': 'Yeah!',
+				'msg': 'بله!',
 				'position': 'center'
 			})
 		}else{
@@ -151,9 +151,9 @@ function not17() {
 	}
 
 	notif_confirm({
-		'textaccept': 'Stay Here',
-		'textcancel': 'Close The Window',
-		'message': 'Are you Sure You Want to Close?',
+		'textaccept': 'این جا بمان',
+		'textcancel': 'پنجره را ببند',
+		'message': 'آیا مطمئن هستید که می خواهید ببندید؟',
 		'callback': myCallback
 	})
 }
@@ -168,36 +168,16 @@ function not18() {
 		}else{
 			notif({
 				'type': 'error',
-				'msg': 'Empty or cancelled',
+				'msg': 'خالی یا کنسل',
 				'position': 'center'
 			})
 		}
 	}
 
 	notif_confirm({
-		'textaccept': 'That\'s it!',
-		'textcancel': 'I don\'t have a pet :(',
-		'message': 'What\'s your pet\'s name?',
+		'textaccept': 'خودشه!',
+		'textcancel': 'حیوان خانگی ندارم :(',
+		'message': 'نام حیوان خانگی شما چیست؟',
 		'callback': myCallback
 	})
-	
 }
-
-if ( $(window).width() < 767) {  
-	function not4() {
-		notif({
-			msg: "Default <b>Center Full width</b> Notification",
-			width: "350",
-			position: "center"
-		});
-	}
-	
-	function not10() {
-		notif({
-			type: "info",
-			msg: "<b>Info: </b>Some info here.",
-			width: "350",
-			position: "center"
-		});
-	}
-} 
