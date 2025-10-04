@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2>ویرایش پروفایل</h2>
+
+    <img src="{{ request.user.profile.image.url }}" width="150" style="border-radius:50%;"><br>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">ذخیره تغییرات</button>
+    </form>
+</body>
+</html>

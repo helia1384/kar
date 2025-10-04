@@ -74,7 +74,7 @@
 						<div class="predefined_styles">
 							<div class="swichermainleft border-bottom  text-center">
 								<div class="p-3">
-									<a href="{% url 'index' %}" class="btn btn-primary btn-block mt-0">نمایش نسخه </a>
+									<a href="{% url 'home' %}" class="btn btn-primary btn-block mt-0">نمایش نسخه </a>
 									<a href="https://www.rtl-theme.com/valex-html-template/" class="btn btn-secondary btn-block">خرید کن</a>
 									<a href="https://www.rtl-theme.com/author/amir-h67/" class="btn btn-info btn-block">نمونه کارها ما</a>
 								</div>
@@ -92,7 +92,7 @@
 							<div class="swichermainleft border-bottom mb-4">
 								<h4>سبک های ناوبری RTL</h4>
 								<div class="ps-3 pe-3">
-									<a class="btn btn-primary btn-block mt-0" href="{% url 'index' %}"> منو عمودی</a>
+									<a class="btn btn-primary btn-block mt-0" href="{% url 'home' %}"> منو عمودی</a>
 									<a class="btn btn-danger btn-block" href="horizontal-light.html"> منو افقی </a>
 								</div>
 							</div>
@@ -179,7 +179,7 @@
 										</div>
 										<div class="switch-toggle d-flex mt-2">
 											<span class="me-auto">متن آیکون</span>
-											<a href="{% url 'index' %}" target="_self" class="onoffswitch2"><input type="radio" id="myonoffswitch30" name="onoffswitch4" class="onoffswitch2-checkbox">
+											<a href="{% url 'home' %}" target="_self" class="onoffswitch2"><input type="radio" id="myonoffswitch30" name="onoffswitch4" class="onoffswitch2-checkbox">
 												<label for="" class="onoffswitch2-label"></label>
 											</a>
 										</div>
@@ -245,27 +245,38 @@
 			<div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
 			<aside class="app-sidebar sidebar-scroll">
 				<div class="main-sidebar-header active">
-					<a class="desktop-logo logo-light active" href="{% url 'index' %}"><img src="{% static 'assets/img/brand/logo.png'%}" class="main-logo" alt="logo"></a>
-					<a class="desktop-logo logo-dark active" href="{% url 'index' %}"><img src="{% static 'assets/img/brand/logo-white.png'%}" class="main-logo dark-theme" alt="logo"></a>
-					<a class="logo-icon mobile-logo icon-light active" href="{% url 'index' %}"><img src="{% static 'assets/img/brand/favicon.png'%}" class="logo-icon" alt="logo"></a>
-					<a class="logo-icon mobile-logo icon-dark active" href="{% url 'index' %}"><img src="{% static 'assets/img/brand/favicon-white.png'%}" class="logo-icon dark-theme" alt="logo"></a>
+					<a class="desktop-logo logo-light active" href="{% url 'home' %}"><img src="{% static 'assets/img/brand/logo.png'%}" class="main-logo" alt="logo"></a>
+					<a class="desktop-logo logo-dark active" href="{% url 'home' %}"><img src="{% static 'assets/img/brand/logo-white.png'%}" class="main-logo dark-theme" alt="logo"></a>
+					<a class="logo-icon mobile-logo icon-light active" href="{% url 'home' %}"><img src="{% static 'assets/img/brand/favicon.png'%}" class="logo-icon" alt="logo"></a>
+					<a class="logo-icon mobile-logo icon-dark active" href="{% url 'home' %}"><img src="{% static 'assets/img/brand/favicon-white.png'%}" class="logo-icon dark-theme" alt="logo"></a>
 				</div>
 				<div class="main-sidemenu">
 					<div class="app-sidebar__user clearfix">
 						<div class="dropdown user-pro-body">
-							<div class="">
-								<img alt="user-img" class="avatar avatar-xl brround" src={{avatar}}><span class="avatar-status profile-status bg-green"></span>
-							</div>
 							<div class="user-info">
-								<h4 class="fw-semibold mt-3 mb-0">{{user.get_full_name}}</h4>
-								<span class="mb-0 text-muted">مدیریت</span>
+    							{% if user_profile %}
+      								<img src="{{ user_profile.image.url }}" width="40" style="border-radius:50%;">
+
+    							{% else %}
+      								<img src="/media/profile_pics/default.png" width="40" style="border-radius:50%;">
+    							{% endif %}
+							</div>
+
+							<div class="user-info">
+								{% if user_profile %}
+
+									<h4 class="fw-semibold mt-3 mb-0">سلام {{ user_profile.user.username }}</h4>
+									<span class="mb-0 text-muted"></span>
+								{% else %}
+									مهمان
+    							{% endif %}
 							</div>
 						</div>
 					</div>
 					<ul class="side-menu">
 						<li class="side-item side-item-category">اصلی</li>
 						<li class="slide">
-							<a class="side-menu__item" href="{% url 'index' %}"><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24" ><path d="M0 0h24v24H0V0z" fill="none"/><path d="M5 5h4v6H5zm10 8h4v6h-4zM5 17h4v2H5zM15 5h4v2h-4z" opacity=".3"/><path d="M3 13h8V3H3v10zm2-8h4v6H5V5zm8 16h8V11h-8v10zm2-8h4v6h-4v-6zM13 3v6h8V3h-8zm6 4h-4V5h4v2zM3 21h8v-6H3v6zm2-4h4v2H5v-2z"/></svg><span class="side-menu__label">صفحه اصلی</span><span class="badge bg-success text-light" id="bg-side-text">1</span></a>
+							<a class="side-menu__item" href="{% url 'home' %}"><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24" ><path d="M0 0h24v24H0V0z" fill="none"/><path d="M5 5h4v6H5zm10 8h4v6h-4zM5 17h4v2H5zM15 5h4v2h-4z" opacity=".3"/><path d="M3 13h8V3H3v10zm2-8h4v6H5V5zm8 16h8V11h-8v10zm2-8h4v6h-4v-6zM13 3v6h8V3h-8zm6 4h-4V5h4v2zM3 21h8v-6H3v6zm2-4h4v2H5v-2z"/></svg><span class="side-menu__label">صفحه اصلی</span><span class="badge bg-success text-light" id="bg-side-text">1</span></a>
 						</li>
 						<li class="side-item side-item-category">عمومی</li>
 						<li class="slide">
@@ -273,6 +284,7 @@
 							<ul class="slide-menu">
 								<li><a class="slide-item" href="http://127.0.0.1:8000/products/">لیست محصولات</a></li>
 								<li><a class="slide-item" href="http://127.0.0.1:8000/products/create/">افزودن محصول</a></li>
+								<li><a class="slide-item" href="http://127.0.0.1:8000/cart/">سبد خرید</a></li>
 							</ul>
 						</li>
 
@@ -289,10 +301,10 @@
 			<div class="container-fluid">
 				<div class="main-header-left ">
 					<div class="responsive-logo">
-						<a href="{% url 'index' %}"><img src="{% static 'assets/img/brand/logo.png'%}" class="logo-1" alt="لوگو"></a>
-						<a href="{% url 'index' %}"><img src="{% static 'assets/img/brand/logo-white.png'%}" class="dark-logo-1" alt="لوگو"></a>
-						<a href="{% url 'index' %}"><img src="{% static 'assets/img/brand/favicon.png'%}" class="logo-2" alt="لوگو"></a>
-						<a href="{% url 'index' %}"><img src="{% static 'assets/img/brand/favicon.png'%}" class="dark-logo-2" alt="لوگو"></a>
+						<a href="{% url 'home' %}"><img src="{% static 'assets/img/brand/logo.png'%}" class="logo-1" alt="لوگو"></a>
+						<a href="{% url 'home' %}"><img src="{% static 'assets/img/brand/logo-white.png'%}" class="dark-logo-1" alt="لوگو"></a>
+						<a href="{% url 'home' %}"><img src="{% static 'assets/img/brand/favicon.png'%}" class="logo-2" alt="لوگو"></a>
+						<a href="{% url 'home' %}"><img src="{% static 'assets/img/brand/favicon.png'%}" class="dark-logo-2" alt="لوگو"></a>
 					</div>
 					<div class="app-sidebar__toggle" data-bs-toggle="sidebar">
 						<a class="open-toggle" href="#"><i class="header-icon fe fe-align-left"></i></a>
@@ -518,13 +530,39 @@
 							<a class="new nav-link full-screen-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg></a>
 						</div>
 						<div class="dropdown main-profile-menu nav nav-item nav-link">
-							<a class="profile-user d-flex" href="#"><img alt="" src={{avatar}}></a>
+							<a class="profile-user d-flex" href="#">
+								<div class="dropdown user-pro-body">
+									{% if user_profile %}
+      									<img src="{{ user_profile.image.url }}" width="40" style="border-radius:50%;">
+
+    								{% else %}
+      									<img src="/media/profile_pics/default.png" width="40" style="border-radius:50%;">
+    								{% endif %}
+								</div>
+							</a>
 							<div class="dropdown-menu">
 								<div class="main-header-profile bg-primary p-3">
 									<div class="d-flex wd-100p">
-										<div class="main-img-user"><img alt="" src={{avatar}} class=""></div>
+										<div class="main-img-user"><div class="user-info">
+    							{% if user_profile %}
+      								<img src="{{ user_profile.image.url }}" width="40" style="border-radius:50%;">
+
+    							{% else %}
+      								<img src="/media/profile_pics/default.png" width="40" style="border-radius:50%;">
+    							{% endif %}
+							</div>
+
+							</div>
 										<div class="ms-3 my-auto">
-											<h6>{{user.get_full_name}}</h6><span>مدیریت</span>
+											<div class="user-info">
+												{% if user_profile %}
+
+													<h4 class="fw-semibold mt-3 mb-0">سلام {{ user_profile.user.username }}</h4>
+													<span class="mb-0 text-muted"></span>
+												{% else %}
+													مهمان
+    											{% endif %}
+											</div>
 										</div>
 									</div>
 								</div>

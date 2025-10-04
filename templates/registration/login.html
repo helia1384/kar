@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>قالب مدیریتی ولکس - ورود</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'assets/img/brand/favicon.png' %}" type="image/x-icon"/>
+
+    <!-- CSS ها -->
+    <link href="{% static 'assets/plugins/icons/icons.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/plugins/bootstrap/css/bootstrap.rtl.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/plugins/sidebar/sidebar.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/plugins/perfect-scrollbar/p-scrollbar.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css-rtl/sidemenu.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css-rtl/style.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css-rtl/boxed.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css-rtl/dark-boxed.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css-rtl/style-dark.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css-rtl/skin-modes.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/switcher/css/switcher-rtl.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/switcher/demo.css' %}" rel="stylesheet">
+</head>
+
+<body class="main-body">
+
+<div class="error-page1 bg-light text-dark">
+    <div id="global-loader">
+        <img src="{% static 'assets/img/loader.svg' %}" class="loader-img" alt="Loader">
+    </div>
+
+    <div class="page">
+        <div class="container-fluid">
+            <div class="row no-gutter">
+                <!-- عکس سمت چپ -->
+                <div class="col-md-6 col-lg-6 col-xl-7 d-none d-md-flex bg-primary-transparent">
+                    <div class="row wd-100p mr-center text-center">
+                        <div class="col-md-12 col-lg-12 col-xl-12 my-auto mr-center wd-100p">
+                            <img src="{% static 'assets/img/media/login.png' %}" class="my-auto ht-xl-80p wd-md-100p wd-xl-80p mr-center" alt="logo">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- فرم لاگین سمت راست -->
+                <div class="col-md-6 col-lg-6 col-xl-5 bg-white">
+                    <div class="login d-flex align-items-center py-2">
+                        <div class="container p-0">
+                            <div class="row">
+                                <div class="col-md-10 col-lg-10 col-xl-9 mr-center">
+                                    <div class="card-sigin">
+                                        <div class="main-signup-header">
+                                            <h2>خوش برگشتی!</h2>
+                                            <h5 class="fw-semibold mb-4">لطفا برای ادامه وارد شوید.</h5>
+
+                                            <form method="post">
+                                                {% csrf_token %}
+                                                {{ form.as_p }}
+                                                <button type="submit">ثبت‌نام</button>
+                                            </form>
+
+
+                                            <div class="main-signin-footer mt-5">
+                                                <p><a href="{% url 'password_reset' %}">رمز عبور را فراموش کرده اید؟</a></p>
+                                                <p>حساب کاربری ندارید؟<a href="{% url 'signup' %}"> ایجاد یک حساب کاربری  </a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- End -->
+                    </div>
+                </div><!-- End فرم لاگین -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JS ها -->
+<script src="{% static 'assets/plugins/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'assets/plugins/bootstrap/js/popper.min.js' %}"></script>
+<script src="{% static 'assets/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'assets/plugins/ionicons/ionicons.js' %}"></script>
+<script src="{% static 'assets/plugins/moment/moment.js' %}"></script>
+<script src="{% static 'assets/plugins/perfect-scrollbar/perfect-scrollbar.min-rtl.js' %}"></script>
+<script src="{% static 'assets/plugins/eva-icons/eva-icons.min.js' %}"></script>
+<script src="{% static 'assets/plugins/rating/jquery.rating-stars.js' %}"></script>
+<script src="{% static 'assets/plugins/rating/jquery.barrating.js' %}"></script>
+<script src="{% static 'assets/js/custom.js' %}"></script>
+<script src="{% static 'assets/switcher/js/switcher-rtl.js' %}"></script>
+
+</body>
+</html>

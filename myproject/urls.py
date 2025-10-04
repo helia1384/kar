@@ -22,18 +22,28 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 from dash import views
+from products import cart
 from django.contrib.auth.views import LogoutView
+from django.contrib.auth import views as auth_views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('account/', include('account.urls')),
+
+
 
     # اپ داشبورد (اصلی)
     path('', include('dash.urls')),
 
     # اپ محصولات
     path('products/', include('products.urls')),
-    path('edit-profile/', views.edit_profile, name='edit_profile'),
-    path('logout/', LogoutView.as_view(), name='logout'),
+
+
+    path('cart/', cart.cart_view, name='cart_view'),
+    path('add/<int:product_id>/', cart.add_to_cart, name='add_to_cart'),
+    path('update/<int:product_id>/<str:action>/', cart.update_cart, name='update_cart'),    path('account/login/', auth_views.LoginView.as_view(template_name='account/login.html'), name='login'),
+
 ]
 
 # برای فایل‌های استاتیک (css, js, ...)

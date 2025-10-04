@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'account',
     'dash',
     'products',
     "widget_tweaks",
@@ -66,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'account.context_processors.user_profile',
             ],
         },
     },
@@ -134,3 +136,12 @@ LOGOUT_REDIRECT_URL = '/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'product:product-list'  # بعد از لاگین به کجا بره
+LOGOUT_REDIRECT_URL = 'login'  # بعد از لاگ‌اوت به لاگین هدایت کن
+LOGIN_REDIRECT_URL = '/'  # بعد از لاگین
+LOGOUT_REDIRECT_URL = '/'  # بعد از لاگ‌اوت
+
+
