@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button class="cart-update-btn" data-product-id="{{ item.id }}" data-action="decrease">-</button>
+<button class="cart-update-btn" data-product-id="{{ item.id }}" data-action="increase">+</button>
+
+<script>
+document.querySelectorAll('.cart-update-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const id = btn.dataset.productId;
+    const action = btn.dataset.action;
+
+    fetch(`/update-cart/${id}/${action}/`, {
+      method: 'POST',
+      headers: { 'X-CSRFToken': getCookie('csrftoken') }
+    })
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById('cart-count').textContent = data.cart_count;
+      location.reload(); // اگر بخوای جدول سبد هم رفرش شه
+    });
+  });
+});
+</script>
+
+</body>
+</html>

@@ -3,6 +3,8 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+
 <!--<div class="container card p-4">-->
 <!--<div class="row align-items-center mb-3">-->
 <!--    <div class="col">-->
@@ -78,7 +80,7 @@
 <!--                        </div>-->
 
 
-<!--{% block scripts %}-->
+
 <!--<script>-->
 <!--    var item_id = null-->
 <!--    var item_name = null-->
@@ -93,21 +95,360 @@
 <!--        -->
 <!--    }-->
 <!--</script>-->
-<!--{% endblock scripts %}-->
 
 
+<head>
+    <style>
+.product-card {
+    width: 250px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin: 10px;
+    transition: all 0.3s ease;
+    border: 1px solid #e0e0e0;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.product-image-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.product-card:hover .product-overlay {
+    opacity: 1;
+}
+
+.add-to-cart-btn {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+    background: #45a049;
+}
+
+.product-info {
+    text-align: center;
+}
+
+.product-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.product-price {
+    margin-top: 8px;
+}
+
+.price {
+    font-size: 15px;
+    font-weight: 700;
+    color: #2e7d32;
+}
+    </style>
+</head>
 
 <h2>محصولات</h2>
 <div style="display:flex; flex-wrap:wrap;">
   {% for product in products %}
-    <div style="border:1px solid #ccc; padding:10px; margin:10px; width:200px;">
-      <img src="{{ product.image.url }}" width="150px"><br>
-      <strong>{{ product.name }}</strong><br>
-      {{ product.price }} تومان<br>
-      <div class="badge bg-success text-light" >
-        <a href="{% url 'add_to_cart' product.id %}">افزودن به سبد</a>
-      </div>
+<div class="product-card" data-product-id="{{ product.id }}">
+    <div class="product-image-container">
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+        <div class="product-overlay">
+            <div class="cart-button-container">
+                {% if product.qty_in_cart > 0 %}
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease-btn" onclick="updateCart('{{ product.id }}', 'decrease')">-</button>
+                        <span class="quantity-display">{{ product.qty_in_cart }}</span>
+                        <button class="quantity-btn increase-btn" onclick="updateCart('{{ product.id }}', 'increase')">+</button>
+                    </div>
+                {% else %}
+                    <button class="add-to-cart-btn" onclick="updateCart('{{ product.id }}', 'add')">
+                        <span>🛒</span> افزودن به سبد
+                    </button>
+                {% endif %}
+            </div>
+        </div>
     </div>
+
+    <div class="product-info">
+        <h3 class="product-name">{{ product.name }}</h3>
+        <div class="product-price">
+            <span class="price">{{ product.price }} تومان</span>
+        </div>
+    </div>
+</div>
+
   {% endfor %}
 </div>
+{% endblock %}
+{% block scripts %}
+<script>
+
+ const cartData = JSON.parse(document.getElementById("cart-data").textContent);
+
+document.addEventListener("DOMContentLoaded", () => {
+  for (const [productId, qty] of Object.entries(cartData)) {
+    const buttonContainer = document.querySelector(`#product-${productId} .button-container`);
+    if (!buttonContainer) continue;
+
+    if (qty > 0) {
+      buttonContainer.innerHTML = `
+        <div class="quantity-controls">
+          <button class="quantity-btn decrease-btn" onclick="updateCart('${productId}', 'decrease')">-</button>
+          <span class="quantity-display">${qty}</span>
+          <button class="quantity-btn increase-btn" onclick="updateCart('${productId}', 'increase')">+</button>
+        </div>
+      `;
+    }
+  }
+});
+
+
+// تابع اصلی برای بروزرسانی سبد خرید
+// تابع اصلی برای بروزرسانی سبد خرید
+// تابع اصلی برای بروزرسانی سبد خرید
+async function updateCart(productId, action) {
+    console.log('🚀 updateCart called!', { productId, action });
+
+    try {
+        // ساخت داده‌ها برای ارسال
+        const data = {
+            'product_id': productId,
+            'action': action
+        };
+
+        console.log('📤 Sending data:', data);
+
+        const response = await fetch('{% url "update_cart" %}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken')
+            },
+            body: JSON.stringify(data)
+        });
+
+        console.log('📥 Response status:', response.status);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json();
+        console.log('📊 Response data:', result);
+
+        if (result.success) {
+            console.log('✅ Success - updating UI');
+
+            // بروزرسانی تعداد کل سبد خرید
+            updateCartCount(result.cart_count);
+
+            // بروزرسانی دکمه محصول
+            updateProductButton(productId, result.product_count);
+
+            showNotification('محصول به سبد خرید اضافه شد', 'success');
+        } else {
+            console.log('❌ Error from server:', result.error);
+            showNotification('خطا در افزودن محصول: ' + result.error, 'error');
+        }
+    } catch (error) {
+        console.error('💥 Fetch error:', error);
+        showNotification('خطا در ارتباط با سرور: ' + error.message, 'error');
+    }
+}
+
+// تابع برای تغییر ظاهر دکمه محصول
+function updateProductButton(productId, productCount) {
+    console.log('🔄 Updating button:', { productId, productCount });
+
+    // پیدا کردن کارت محصول
+    const productCard = document.querySelector(`[data-product-id="${productId}"]`);
+    if (!productCard) {
+        console.log('❌ Product card not found for ID:', productId);
+        console.log('Available product cards:', document.querySelectorAll('[data-product-id]'));
+        return;
+    }
+
+    // پیدا کردن container دکمه
+    const buttonContainer = productCard.querySelector('.cart-button-container');
+    if (!buttonContainer) {
+        console.log('❌ Button container not found');
+        return;
+    }
+
+    console.log('🎯 Creating new button for count:', productCount);
+
+    if (productCount > 0) {
+        // حالت کم و زیاد کردن
+        buttonContainer.innerHTML = `
+            <div class="quantity-controls">
+                <button class="quantity-btn decrease-btn" onclick="updateCart('${productId}', 'decrease')">-</button>
+                <span class="quantity-display">${productCount}</span>
+                <button class="quantity-btn increase-btn" onclick="updateCart('${productId}', 'increase')">+</button>
+            </div>
+        `;
+        console.log('✅ Changed to quantity controls');
+    } else {
+        // حالت افزودن اولیه
+        buttonContainer.innerHTML = `
+            <button class="add-to-cart-btn" onclick="updateCart('${productId}', 'add')">
+                <span>🛒</span>
+                افزودن به سبد
+            </button>
+        `;
+        console.log('✅ Changed to add button');
+    }
+}
+
+// تابع برای بروزرسانی تعداد کل سبد خرید
+function updateCartCount(count) {
+    console.log('🔢 Updating cart count:', count);
+
+    const cartCountElements = document.querySelectorAll('.cart-count');
+    console.log('Found cart count elements:', cartCountElements.length);
+
+    cartCountElements.forEach((element, index) => {
+        console.log(`Updating element ${index}:`, element);
+        element.textContent = count;
+        element.style.display = count > 0 ? 'inline' : 'none';
+    });
+}
+
+// تابع برای دریافت CSRF Token
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    console.log('🍪 CSRF Token:', cookieValue ? 'Found' : 'Not found');
+    return cookieValue;
+}
+
+// نمایش نوتیفیکیشن
+function showNotification(message, type) {
+    console.log('📢 Notification:', { message, type });
+
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
+
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        padding: 15px 25px;
+        border-radius: 10px;
+        color: white;
+        font-weight: bold;
+        z-index: 10000;
+        font-family: inherit;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        ${type === 'success' ? 'background: linear-gradient(135deg, #28a745, #20c997);' : 'background: linear-gradient(135deg, #dc3545, #e83e8c);'}
+    `;
+
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transition = 'opacity 0.5s ease';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.remove();
+            }
+        }, 500);
+    }, 3000);
+}
+
+// وقتی صفحه لود شد
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('✅ Cart JS loaded successfully!');
+    console.log('Available functions:', {
+        updateCart: typeof updateCart,
+        updateProductButton: typeof updateProductButton,
+        updateCartCount: typeof updateCartCount,
+        getCookie: typeof getCookie
+    });
+
+    // تست پیدا کردن المنت‌ها
+    const productCards = document.querySelectorAll('[data-product-id]');
+    console.log('📦 Found product cards:', productCards.length);
+
+    productCards.forEach(card => {
+        const productId = card.getAttribute('data-product-id');
+        console.log(`Product ${productId} button container:`, card.querySelector('.cart-button-container'));
+    });
+});
+
+console.log('🎯 Cart JavaScript initialized');
+
+// مقداردهی اولیه دکمه‌ها وقتی صفحه لود شد
+document.addEventListener('DOMContentLoaded', function() {
+    // برای هر محصول دکمه اولیه را تنظیم کن
+    const productCards = document.querySelectorAll('[data-product-id]');
+    productCards.forEach(card => {
+        const productId = card.getAttribute('data-product-id');
+        const buttonContainer = card.querySelector('.cart-button-container');
+
+        if (buttonContainer) {
+            buttonContainer.innerHTML = `
+                <button class="add-to-cart-btn" onclick="updateCart('${productId}', 'add')">
+                    <span>🛒</span>
+                    افزودن به سبد
+                </button>
+            `;
+        }
+    });
+});
+</script>
 {% endblock %}
